@@ -110,7 +110,31 @@ fn binary_search(arr: &[i32], target: i32) -> Option<usize> {
 
     None
 }
+fn arr_swap(arr: &mut [i32],left:usize,right:usize){
+    if left>=right{
+        return;
 
+    }
+    arr.swap(left,right);
+
+    arr_swap(arr, left+1, right-1);
+
+
+    
+}
+fn palindrome(chars: &[char], i: usize) -> bool {
+    let n = chars.len();
+
+    if i >= n / 2 {
+        return true;
+    }
+
+    if chars[i] != chars[n - i - 1] {
+        return false;
+    }
+
+    palindrome(chars, i+1)
+}
 
 fn main(){
 //    let number=recursion_sum(10);
@@ -130,8 +154,11 @@ fn main(){
     // println!("{:?}",a);
     // let a=power(2, 4);
     // print!("{:?}",a);
-    let ar=[0,1,2,3,4,5,6,7,8,9];
-    let a=binary_search(&ar, 8);
-    println!("{:?}",a);
+    // let ar=[0,1,2,3,4,5,6,7,8,9];
+    // println!("{:?}",a);
+    let mut ar=[0,1,2,3,4,5,6,7,8,9];
+    let mut n=ar.len();
+    let a=arr_swap(&mut ar, 0,n-1 );
+    println!("{:?}",ar);
 
 }
