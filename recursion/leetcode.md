@@ -149,6 +149,41 @@ Great bridge to Dynamic Programming.
 
 ---
 
+---
+my process
+recusion to karna hai 
+constrain bhi n= 45 hai to overflow nahi hona chiyea
+1 ya 2 clime karega
+1= 1
+2=1+1,2
+3=1+1+1,1+2,2+1
+4=1+1+1+1,2+1+1,1+2+1,1+1+2,2+2
+so basicall f n steps is= f(n-1) +f(n-2)
+
+impl Solution {
+    pub fn climb_stairs(n: i32) -> i32 {
+        fn output(typ:i32)->i32{
+            if typ==1{
+                return 1;
+            }
+            if typ==2{
+                return 2;
+            }
+
+            output(typ-1)+output(typ-2)
+            
+        }
+        output(n)
+
+        
+    }
+}
+
+a good sol but isse is its giving time limit error
+
+
+
+
 # 🟠 Level 3 — Functional Recursion
 
 ### 7. Maximum Depth of Binary Tree

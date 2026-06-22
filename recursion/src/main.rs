@@ -169,24 +169,32 @@ fn string_recursion(word:String,left:usize){
     
 }
 
- pub fn fib(n: i32) -> i32 {
-        fn F(i:i32,m:i32)->i32{
-            let mut k=0
-            F(0)=0;
-            F(1)=1;
-            if k>i{
-                k=k+1;
-                m=F(i-1)+F(i-2);
-            }
-            if k==i{
-                return m;
-            }
+//  pub fn fib(n: i32) -> i32 {
+//         fn F(i:i32,m:i32)->i32{
+//             let mut k=0
+//             F(0)=0;
+//             F(1)=1;
+//             if k>i{
+//                 k=k+1;
+//                 m=F(i-1)+F(i-2);
+//             }
+//             if k==i{
+//                 return m;
+//             }
             
             
-        }
-        F
+//         }
+//         F
+//     }
+fn fib(n:i32)->i32{
+    if n==1{
+        return 1;
     }
-
+    if n==2{
+        return 2;
+    }
+    fib(n-1)+fib(n-2)
+}
 fn main(){
 //    let number=recursion_sum(10);
 //    println!("{:?}",number);
@@ -214,5 +222,7 @@ fn main(){
     // let a:String="123456".to_string();
     // let b=string_recursion(a, 0);
     // print!("{:?}",b);
+    let n=45;
+    fib(n);
 
 }
