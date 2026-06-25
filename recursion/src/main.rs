@@ -1,7 +1,7 @@
 #![allow(dead_code)]      // item exists but is never used
 #![allow(unused_variables)] // local variables not used
 #![allow(unused_imports)] // imports not used
-
+#![warn(unconditional_recursion)]
 use std::str::Chars;
 use std::{array, vec};
 use std::fmt::Alignment::Right;
@@ -187,6 +187,7 @@ fn string_recursion(word:String,left:usize){
 //         F
 //     }
 fn fib(n:i32)->i32{
+
     if n==1{
         return 1;
     }
@@ -195,7 +196,25 @@ fn fib(n:i32)->i32{
     }
     fib(n-1)+fib(n-2)
 }
+
+
+pub fn arry(arr:&mut Vec<i32>){
+    let mut ans_arr:Vec<Vec<i32>>=[].to_vec();
+    let mut left=0;
+    fn int(arr:&mut Vec<i32>,left:usize,ans_arr:&mut Vec<Vec<i32>>)->&mut Vec<Vec<i32>>{
+        let right=arr.len()-1;
+        if left>=right{
+           return ans_arr;
+        }
+        arr.swap(left, right);
+        ans_arr.push(arr.clone());
+        int(arr, left+1, ans_arr);
+
+    }
+    int(arr,left,ans_arr);
+}
 fn main(){
+
 //    let number=recursion_sum(10);
 //    println!("{:?}",number);
     // let k=fib(10);
@@ -222,7 +241,10 @@ fn main(){
     // let a:String="123456".to_string();
     // let b=string_recursion(a, 0);
     // print!("{:?}",b);
-    let n=45;
-    fib(n);
+    // let n=45;
+    // fib(n);
+    let mut a:Vec<i32>=[1,2,3].to_vec();
+    arry(a);
+
 
 }
