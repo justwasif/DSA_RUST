@@ -130,11 +130,22 @@ fn spec_count(word:&str){
     }
 }
 
+fn counting_programming(word:&str)->Vec<i32>{
+    let mut freq=vec![0;26];
+    for i in word.chars(){
+        let x=(i as u8-b'a') as usize;
+        freq[x]+=1;
+    }
+    freq
+
+}
+
 fn main() {
     // let arr=vec![0i32,10000000];
     // println!("{:?}",(arr.len() * std::mem::size_of::<i32>()) as usize
     //         as f64 / (1024.0 * 1024.0));
-    println!("{:?}",spec_count("mississippi"));
+    // println!("{:?}",spec_count("mississippi"));
+    println!("{:?}",counting_programming("programming"));
    
     
 }
