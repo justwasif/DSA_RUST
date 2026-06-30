@@ -216,10 +216,27 @@ fn comparing_hash(){
     println!("{:?}",srart.elapsed())
 
 }
+fn toy_hash(){
+    let arr=[12,22,32,43,52];
+    let mut hash=HashMap::new();
+    for &i in &arr{
+        let k= (i % 10) as usize;
+        *hash.entry(k).or_insert(0)+=1;
+    }
+
+}
+fn toy_chain_hash_table(arr:&[i32]){
+    let mut table=vec![vec![];10];
+    for i in arr{
+        table[8].push(i);
+    }
+
+}
+
 fn main() {
     // let arr=&["india"];
     // let brr=&["delhi"];
     // println!("{:?}",capital_country(arr, brr));
-    println!("btree {:?}",comparing_btree());
-    println!("hash {:?}",comparing_hash());
+    println!("{:?}",divide(&2, &1));
+   
 }
