@@ -4,6 +4,9 @@
 #![warn(unconditional_recursion)]
 #![warn(non_snake_case)]
 use std::collections::HashMap;
+use std::collections::BTreeMap;
+use std::time::Instant;
+
 
 fn hash(){
     let mut f=HashMap::new();
@@ -140,12 +143,83 @@ fn counting_programming(word:&str)->Vec<i32>{
 
 }
 
-fn main() {
-    // let arr=vec![0i32,10000000];
-    // println!("{:?}",(arr.len() * std::mem::size_of::<i32>()) as usize
-    //         as f64 / (1024.0 * 1024.0));
-    // println!("{:?}",spec_count("mississippi"));
-    println!("{:?}",counting_programming("programming"));
-   
+fn mapping(){
+    let nums=vec![1,999999999,42];
+    let mut freq=HashMap::new();
+    for i in nums{
+        *freq.entry(i).or_insert(0)+=1;
+    }
+    println!("{:?}",freq);
+
+}
+
+fn btreeimplementation(){
+    let mut map=BTreeMap::new();
+    map.insert(5, 100);
+    map.insert(1, 50);
+    println!("{:?}",map);
+}
+// btree automaticall does sort it through key order
+fn btreecount(arr:&[i32]){
+    let mut map=BTreeMap::new();
+    let mut start=0;
+    for i in arr{
+        map.insert(start, i);
+        start=start+1;
+
+    }
+    println!("{:?}",map);
+
+}
+
+fn count_23(arr:&[i32]){
+    let mut h=HashMap::new();
+    for i in arr{
+        *h.entry(i).or_insert(0)+=1;
+    }
+
+}
+
+
+
+
+
+fn hash_j(){
+    let mut h=HashMap::new();
+    h.insert("a",22);
+} 
+
+fn capital_country(arr:&[&str],barr:&[&str]){
+    let mut a=HashMap::new();
+    for (i,j) in arr.iter().zip(barr.iter()){
+        a.insert(i, j);
+    }
+    println!("{:?}",a);
     
+}
+
+fn comparing_btree(){
+    let start=Instant::now();
+    let mut btree=BTreeMap::new();
+    for i in 0..1000000{
+        btree.insert(i, i);
+    }
+    println!("{:?}",start.elapsed());
+
+}
+fn comparing_hash(){
+    let srart=Instant::now();
+    let mut hash=HashMap::new();
+    for i in 1..1000000{
+        hash.insert(i, i);
+    }
+    println!("{:?}",srart.elapsed())
+
+}
+fn main() {
+    // let arr=&["india"];
+    // let brr=&["delhi"];
+    // println!("{:?}",capital_country(arr, brr));
+    println!("btree {:?}",comparing_btree());
+    println!("hash {:?}",comparing_hash());
 }
