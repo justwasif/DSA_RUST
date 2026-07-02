@@ -232,11 +232,52 @@ fn toy_chain_hash_table(arr:&[i32]){
     }
 
 }
+pub fn contains_duplicate(nums: Vec<i32>) -> bool {
+        fn hashmethod(num:Vec<i32>)->bool{
+            let mut h=HashMap::new();
+            for i in num{
+                let mut freq=h.entry(i).or_insert(0);
+                *freq+=1;
+                if *freq>1{
+                    return true;
+                }
+
+            }
+            return false;
+            
+        }
+        hashmethod(nums)
+    }
+
+   pub fn intersection(nums1: Vec<i32>, nums2: Vec<i32>) -> Vec<i32> {
+    let mut a=HashMap::new();
+    let mut b=HashMap::new();
+    let mut c=Vec::new();
+    for i in nums1{
+        a.entry(i).or_insert(1);
+    }
+    for j in nums2{
+        b.entry(j).or_insert(1);
+    }
+    for k in a.keys(){
+        if b.contains_key(k){
+            c.push(*k);
+        }
+        
+    }
+    return c;
+        
+    }
 
 fn main() {
     // let arr=&["india"];
     // let brr=&["delhi"];
     // println!("{:?}",capital_country(arr, brr));
-    println!("{:?}",divide(&2, &1));
+    let nums=vec![3,2,3];
+    let target=6;
+    // println!("{:?}",two_sum(nums, target))
+    let s="anagram".to_string();
+    let t="nagaram".to_string();
+    println!("{:?}",is_anagram(s, t));
    
 }
