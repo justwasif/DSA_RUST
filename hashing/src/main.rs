@@ -268,6 +268,7 @@ pub fn contains_duplicate(nums: Vec<i32>) -> bool {
     return c;
         
     }
+    
 
 fn main() {
     // let arr=&["india"];
