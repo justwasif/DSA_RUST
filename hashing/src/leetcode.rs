@@ -130,3 +130,35 @@ pub fn first_uniq_char(s: String) -> i32 {
 
     return -1;   
     }
+
+
+pub fn find_the_difference(s: String, t: String) -> char {
+    let mut one_less=HashMap::new();
+    let mut one_more=HashMap::new();
+    for i in s.chars(){
+        *one_less.entry(i).or_insert(0)+=1;
+
+    }
+     for i in t.chars(){
+        *one_more.entry(i).or_insert(0)+=1;
+
+    }
+    let a='k';
+
+    for i in one_more.keys(){
+        if !one_less.contains_key(i){
+            return *i;
+        } 
+        if one_less.contains_key(i){
+            let less=one_less.get(i).unwrap();
+            let more=one_more.get(i).unwrap();
+            if more!=less{
+                return *i;
+            }
+            
+        }
+        
+    }
+    println!("{:?}, {:?}",one_less,one_more);
+    return a;
+}
