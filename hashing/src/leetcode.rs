@@ -69,3 +69,33 @@ pub fn is_anagram(s: String, t: String) -> bool {
         }
         return c;
     }
+
+  pub fn can_construct(ransom_note: String, magazine: String) -> bool {
+        let mut to_be_constructed=HashMap::new();
+        let mut by_constructed=HashMap::new();
+        
+        for i in ransom_note.chars(){
+            *to_be_constructed.entry(i).or_insert(0)+=1        
+        
+        }
+        for j in magazine.chars(){
+            *by_constructed.entry(j).or_insert(0)+=1        
+        
+        }
+        for i in to_be_constructed.keys(){
+            if !by_constructed.contains_key(i){
+                return false;
+            }else  {
+                let a=to_be_constructed.get(i).unwrap();
+                let b=by_constructed.get(i).unwrap();
+                if b<a{
+                    println!("{b} ,{a}");
+                    return false;
+                }
+                
+            }
+            
+
+        }
+        return true;
+    }
