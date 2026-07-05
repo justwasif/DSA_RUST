@@ -99,3 +99,34 @@ pub fn is_anagram(s: String, t: String) -> bool {
         }
         return true;
     }
+pub fn first_uniq_char(s: String) -> i32 {
+    let mut frequence=HashMap::new();
+    let mut index=0;
+    let mut arr=Vec::new();
+    let mut equate_arr=Vec::new();
+
+    for i in s.chars(){
+        *frequence.entry(i).or_insert(0)+=1;
+        arr.push(i);
+    }
+    for i in frequence.keys(){
+       
+        let a=frequence.get(i).unwrap();
+        
+        if a<&2{
+           equate_arr.push(i);
+        }
+    }
+    for i in arr{
+        for j in &equate_arr{
+            if &&i==j{
+                return index;
+            }
+
+        }
+        index=index+1;
+    }
+    
+
+    return -1;   
+    }
