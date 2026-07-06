@@ -162,3 +162,32 @@ pub fn find_the_difference(s: String, t: String) -> char {
     println!("{:?}, {:?}",one_less,one_more);
     return a;
 }
+
+ pub fn num_jewels_in_stones(jewels: String, stones: String) -> i32 {
+    let mut j=HashMap::new();
+    let mut s=HashMap::new();
+    let mut index=0;
+    for i in jewels.chars(){
+        *j.entry(i).or_insert(0)+=1;
+    }
+    for i in stones.chars(){
+        *s.entry(i).or_insert(0)+=1;
+
+    }
+    for i in j.keys(){
+        
+        if s.contains_key(i){
+            let p=j.get(i).unwrap();
+            let o=*s.get(i).unwrap();
+        
+            for a in 0..o{
+            
+                index=index+1;
+            }
+        }
+         
+    }
+
+
+     return index;
+    }
