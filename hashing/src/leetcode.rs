@@ -232,3 +232,31 @@ pub fn unique_occurrences(arr: Vec<i32>) -> bool {
 
     true
 }
+
+ pub fn majority_element(nums: Vec<i32>) -> i32 {
+    let mut frequencq_counter=HashMap::new();
+    let mut new_approch=Vec::new();
+    for i in nums{
+        *frequencq_counter.entry(i).or_insert(0)+=1;
+    
+    }
+    for i in frequencq_counter.values(){
+        new_approch.push(i);
+    }
+    println!("{:?}",frequencq_counter);
+    let k=new_approch.sort();
+    let lenth=new_approch.len()-1;
+    println!("{:?}",new_approch);
+    let ans=*new_approch.get(lenth).unwrap();
+    for i in frequencq_counter.keys(){
+        let count=frequencq_counter.get(i).unwrap();
+        if count==ans{
+            return *i;
+
+        }
+    }
+
+    return  0;
+        
+    }
+
