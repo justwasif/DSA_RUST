@@ -191,3 +191,44 @@ pub fn find_the_difference(s: String, t: String) -> char {
 
      return index;
     }
+
+
+
+pub fn unique_occurrences(arr: Vec<i32>) -> bool {
+    let arr_len = arr.len();
+
+    let mut freq_count = HashMap::new();
+    let mut freq_arr = Vec::new();
+    let mut correct_order = Vec::new();
+
+    for i in arr {
+        *freq_count.entry(i).or_insert(0) += 1;
+    }
+
+    for i in freq_count.values() {
+        freq_arr.push(*i);
+    }
+
+    for i in 1..=arr_len {
+        for j in &freq_arr {
+            if i as i32 == *j {
+                correct_order.push(i as i32);
+            }
+        }
+    }
+
+    let l = correct_order.len();
+    let mut big_bug = 0;
+
+    for i in &correct_order {
+        big_bug += 1;
+        for j in big_bug..l {
+            let equat = &correct_order[j];
+            if i == equat {
+                return false;
+            }
+        }
+    }
+
+    true
+}
