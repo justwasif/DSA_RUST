@@ -3,6 +3,7 @@
 #![allow(unused_imports)] // imports not used
 #![warn(unconditional_recursion)]
 #![warn(non_snake_case)]
+use std::cmp::Ordering;
 use std::collections::HashMap;
 use std::collections::BTreeMap;
 use std::time::Instant;
@@ -232,22 +233,22 @@ fn toy_chain_hash_table(arr:&[i32]){
     }
 
 }
-pub fn contains_duplicate(nums: Vec<i32>) -> bool {
-        fn hashmethod(num:Vec<i32>)->bool{
-            let mut h=HashMap::new();
-            for i in num{
-                let mut freq=h.entry(i).or_insert(0);
-                *freq+=1;
-                if *freq>1{
-                    return true;
-                }
+// pub fn contains_duplicate(nums: Vec<i32>) -> bool {
+//         fn hashmethod(num:Vec<i32>)->bool{
+//             let mut h=HashMap::new();
+//             for i in num{
+//                 let mut freq=h.entry(i).or_insert(0);
+//                 *freq+=1;
+//                 if *freq>1{
+//                     return true;
+//                 }
 
-            }
-            return false;
+//             }
+//             return false;
             
-        }
-        hashmethod(nums)
-    }
+//         }
+//         hashmethod(nums)
+//     }
 
    pub fn intersection(nums1: Vec<i32>, nums2: Vec<i32>) -> Vec<i32> {
     let mut a=HashMap::new();
@@ -268,17 +269,18 @@ pub fn contains_duplicate(nums: Vec<i32>) -> bool {
     return c;
         
     }
-    
 
+//phele i lete hai vec i.chars() hashmap 
+    
+ pub fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
+    let 
+        
+    }
 fn main() {
-    // let arr=&["india"];
-    // let brr=&["delhi"];
-    // println!("{:?}",capital_country(arr, brr));
-    let nums=vec![3,2,3];
-    let target=6;
-    // println!("{:?}",two_sum(nums, target))
-    let s="anagram".to_string();
-    let t="nagaram".to_string();
-    println!("{:?}",is_anagram(s, t));
+   
+   
+   
+    
+   
    
 }
