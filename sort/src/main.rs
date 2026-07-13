@@ -45,8 +45,51 @@ fn selection_sort_no_swap(arr:&mut[i32]){
     }
     println!("{:?}",arr);
 }
+fn insertion_sort(arr:&mut[i32]){
+    let n=arr.len();
+    for i in 1..n{
+        let key=arr[i];
+        let mut j=i;
+        while j>0&& arr[j-1]>key{
+            arr[j]=arr[j-1];
+            j-=1;
+        }
+        arr[j]=key;
+    }
+}
+
+fn insertion_sort_string(arr:&mut[String]){
+    let n=arr.len();
+    for i in 1..n{
+        let key=arr[i].clone();
+        let mut j=i;
+        while j>0&&arr[j-1]>key{
+            arr[j]=arr[j-1].clone();
+            j=j-1;
+
+
+        }
+        arr[j]=key;
+
+    }
+
+}
+fn integer_shifiting(arr:&mut[i32]){
+    let n=arr.len();
+    for i in 1..n{
+        let key=arr[i];
+        let mut j=i;
+        while j>0 &&arr[j-1]>key{
+            arr[j]=arr[j-1];
+            j=j-1;
+
+        }
+        arr[j]=key;
+    }
+}
 fn main() {
-    let mut arr=&mut[3,5,6,7,9,1,2,0];
-    println!("{:?}",selection_sort_no_swap(arr));
+    let arr=&mut[4,5,1,9,8,0,3];
+    integer_shifiting(arr);
+    println!("{:?}",arr);
 
 }
