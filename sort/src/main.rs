@@ -87,7 +87,7 @@ fn integer_shifiting(arr:&mut[i32]){
         arr[j]=key;
     }
 }
-fn merge_sort(arr:&mut[i32]){
+// fn merge_sort(arr:&mut[i32]){
     let n=arr.len();
     if n<=1{
         return;
@@ -124,9 +124,58 @@ fn merge_sort(arr:&mut[i32]){
     
 }
 
-fn main() {
-    let arr=&mut[4,5,1,9,8,0,3];
-    integer_shifiting(arr);
-    println!("{:?}",arr);
+fn merge(arr: &mut [i32], low: usize, mid: usize, high: usize) {
+    let mut temp = Vec::with_capacity(high - low + 1);
 
+    let mut left = low;
+    let mut right = mid + 1;
+
+    while left <= mid && right <= high {
+        if arr[left] <= arr[right] {
+            temp.push(arr[left]);
+            left += 1;
+        } else {
+            temp.push(arr[right]);
+            right += 1;
+        }
+    }
+
+    while left <= mid {
+        temp.push(arr[left]);
+        left += 1;
+    }
+
+    while right <= high {
+        temp.push(arr[right]);
+        right += 1;
+    }
+
+    for i in low..=high {
+        arr[i] = temp[i - low];
+    }
 }
+
+fn merge_sort(arr: &mut [i32], low: usize, high: usize) {
+    if low >= high {
+        return;
+    }
+
+    let mid = low + (high - low) / 2;
+
+    merge_sort(arr, low, mid);
+    merge_sort(arr, mid + 1, high);
+
+    merge(arr, low, mid, high);
+}
+
+fn main() {
+    let mut arr = vec![3, 1, 2, 4, 1, 5, 2, 6, 4];
+
+    let n = arr.len();
+
+    merge_sort(&mut arr, 0, n - 1);
+
+    println!("{:?}", arr);
+}
+
+
