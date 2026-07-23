@@ -87,42 +87,43 @@ fn integer_shifiting(arr:&mut[i32]){
         arr[j]=key;
     }
 }
-// fn merge_sort(arr:&mut[i32]){
-    let n=arr.len();
-    if n<=1{
-        return;
+// // 
+//     let n=arr.len();
+//     if n<=1{
+//         return;
 
-    }
-    let mid=n/2;
-    merge_sort(&mut arr[..mid]);
-    merge_sort(&mut arr[mid..]);
-    let mut i=0;
-    let mut j =0;
-    let (left,right)=arr.split_at(mid);
+//     }
+//     let mid=n/2;
+//     merge_sort(&mut arr[..mid]);
+//     merge_sort(&mut arr[mid..]);
+//     let mut i=0;
+//     let mut j =0;
+//     let (left,right)=arr.split_at(mid);
 
-    let mut merged=Vec::with_capacity(n);
+//     let mut merged=Vec::with_capacity(n);
 
-    while i<left.len() && j<right.len(){
-        if left[i]<=right[j]{
-            merged.push(left[i]);
-            i+=1;
+//     while i<left.len() && j<right.len(){
+//         if left[i]<=right[j]{
+//             merged.push(left[i]);
+//             i+=1;
             
-        }else {
-            merged.push(right[j]);
-            j+=1;
-        }
+//         }else {
+//             merged.push(right[j]);
+//             j+=1;
+//         }
 
-    }
-    while i<left.len(){
-        merged.push(left[i]);
-        i+=1;
-    }
-    while j<right.len(){
-        merged.push(right[j]);
-    }
-    arr.copy_from_slice(&merged);
+//     }
+//     while i<left.len(){
+//         merged.push(left[i]);
+//         i+=1;
+//     }
+//     while j<right.len(){
+//         merged.push(right[j]);
+//     }
+//     arr.copy_from_slice(&merged);
     
-}
+// }
+
 
 fn merge(arr: &mut [i32], low: usize, mid: usize, high: usize) {
     let mut temp = Vec::with_capacity(high - low + 1);
@@ -168,14 +169,84 @@ fn merge_sort(arr: &mut [i32], low: usize, high: usize) {
     merge(arr, low, mid, high);
 }
 
-fn main() {
-    let mut arr = vec![3, 1, 2, 4, 1, 5, 2, 6, 4];
+fn quick_sort(arr: &mut Vec<i64>) {
+    fn quick_sort_range(arr: &mut [i64], low: usize, high: usize) {
+        if low < high {
+            let pi = partition(arr, low, high);
 
-    let n = arr.len();
+           
+            if pi > 0 {
+                quick_sort_range(arr, low, pi - 1);
+            }
 
-    merge_sort(&mut arr, 0, n - 1);
+            quick_sort_range(arr, pi + 1, high);
+        }
+    }
 
-    println!("{:?}", arr);
+    fn partition(arr: &mut [i64], low: usize, high: usize) -> usize {
+        let pivot = arr[high];
+        let mut i = low;
+
+        for j in low..high {
+            if arr[j] <= pivot {
+                arr.swap(i, j);
+                println!("{:?}",arr);
+                i += 1;
+            }
+        }
+
+        arr.swap(i, high);
+        println!("{:?},{}",arr,i);
+        i
+        
+    }
+
+    if arr.len() > 1 {
+        let len = arr.len();
+        quick_sort_range(arr.as_mut_slice(), 0, len - 1);
+    }
 }
+fn quick_sort_2(arr: &mut Vec<i64>){
+    fn quick_sort_range_2(arr: &mut [i64],low: usize,high: usize){
+        if low<high{
+            let pi=partition_2(arr, low, high);
+            if pi>0{
+                quick_sort_range_2(arr,low,pi-1);
+            }
+            quick_sort_range_2(arr, pi+1, high);
+        }
+
+    }
+    fn partition_2(arr: &mut [i64],low: usize,high: usize)->usize{
+        let pivot=arr[high];
+        let mut i=low;
+        for j in low..high{
+            if arr[j]<=pivot{
+                arr.swap(i, j);
+                i=i+1;
+
+
+            }
+        }
+        arr.swap(i, high);
+        i
+    }
+    if arr.len()>1{
+        let len =arr.len();
+        quick_sort_range_2(arr.as_mut_slice(), 0, len-1);
+    }
+    
+}
+fn main() {
+    let mut arr = vec![8, 3, 1, 7, 0, 10, 2];
+    println!("{:?}",arr.len());
+
+    // println!("Before: {:?}", arr);
+
+    // quick_sort(&mut arr);
+
+    // println!("After : {:?}", arr);
+}
+
 
 
